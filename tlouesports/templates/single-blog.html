@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% load static %}
+{% block body %}
+
+         <div class="inner-page-banner" style="background-image: url('/{{image.0.image}}');">
+            <div class="container">
+            </div>
+         </div>
+         <div class="inner-information-text">
+            <div class="container">
+               <h3>{{news.title}}</h3>
+               <ul class="breadcrumb">
+                  <li><a href="/">Home</a></li>
+                  <li class="active">{{news.title}}</li>
+               </ul>
+            </div>
+         </div>
+      </section>
+      <section id="contant" class="contant main-heading single-blog">
+         <div class="row">
+            <div class="container">
+               <div class="col-md-9">
+                  <div class="feature-post">
+                     <div class="feature-img">
+                        <img src="/{{news.image}}" class="img-responsive" alt="#" />
+                     </div>
+                     <div class="feature-cont">
+                        <div class="post-people">
+                           <div class="left-profile">
+                              <div class="post-info">
+                                 
+                                 <span>
+                                    <h4>by Tlouesports.com</h4>
+                                    <h5>{{news.time}}</h5>
+                                 </span>
+                              </div>
+                              <span class="share"></span>
+                           </div>
+                        </div>
+                        <div class="post-heading">
+                           <h3>{{news.title}}</h3>
+                           {{news.Description|safe}}
+                        </div>
+                     </div>   
+                  </div>
+               </div>
+         </div>
+      </section>
+{% endblock %}

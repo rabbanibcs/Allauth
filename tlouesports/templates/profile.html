@@ -1,0 +1,183 @@
+{% extends "base.html" %}
+{% load static %}
+{% block body %}
+         <div class="inner-page-banner" style="background-image: url('/{{image.0.image}}');">
+            <div class="container">
+            </div>
+         </div>
+         <div class="inner-information-text">
+            <div class="container">
+               <h3>{{user.first_name}} {{user.last_name}}</h3>
+               <ul class="breadcrumb">
+                  <li><a href="/">Home</a></li>
+                  <li><a href="#">Profile</a></li>
+                  <li class="active">{{user.first_name}} {{user.last_name}}</li>
+               </ul>
+            </div>
+         </div>
+      </section>
+      <section id="contant" class="contant main-heading team">
+        <div class="container">
+            <div class="main-body">
+              <div class="row gutters-sm">
+                <div class="col-md-4 mb-3">
+                  <div class="card">
+                    <div class="card-body">
+                      <div class="d-flex flex-column align-items-center text-center">
+                        <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" class="rounded-circle"
+                          width="150">
+                        <div class="mt-3">
+                          <h4>{{user.first_name}} {{user.last_name}}</h4>
+                          <h3>{{request.user.email}}</h3>
+                        </div>
+
+                        <div class="pt-4">
+                          <a class="dark-grey-text d-flex justify-content-between" data-toggle="collapse"
+                            href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                            Change Password
+                            <span><i class="fas fa-key pt-1"></i></span>
+                          </a>
+                          <div class="collapse" id="collapseExample">
+                            <div class="mt-3">
+                              <div class="md-form md-outline mb-0">
+                                <input type="text" id="oldPassword" class="form-control font-weight-light"
+                                  placeholder="Enter Old Password">
+                              </div>
+                            </div>
+                            <div class="mt-3">
+                              <div class="md-form md-outline mb-0">
+                                <input type="text" id="password" class="form-control font-weight-light"
+                                  placeholder="Enter New password">
+                              </div>
+                            </div>
+                            <div class="mt-3">
+                              <div class="md-form md-outline mb-0">
+                                <input type="text" id="password1" class="form-control font-weight-light"
+                                  placeholder="Enter New Password">
+                              </div>
+                            </div><hr>
+                            <button class="btn submit_btn" onclick="ChangePassword()" style="margin: 15px; margin-top: 0px; cursor: pointer;">Update My
+                              Password </button>
+                          </div>
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
+
+
+                  <div class="card mt-3">
+                    <ul class="list-group list-group-flush">
+                      <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                        <a href="/"><span class="text-secondary">My Games</span></a>
+                      </li>
+                      <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                        <a href="/"><span class="text-secondary">Home</span></a>
+                      </li>
+                      <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                        <a href="/"><span class="text-secondary">Messages</span></a>
+                      </li>
+                      <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                        <a href="/logout"><span class="text-secondary">LogOut</span></a>
+                      </li>
+
+                    </ul>
+                  </div>
+                </div>
+
+                <div class="col-md-8">
+                  <div class="card mb-3">
+
+                    <div class="card-body">
+                     <form action="{% url 'update' %}" method="POST" enctype = "multipart/form-data">
+                        {% csrf_token %}
+
+                      <div class="row">
+                        <div class="col-sm-3">
+                          <h6 class="mb-0">Firts Name</h6>
+                        </div>
+                        <div class="col-sm-9 text-secondary">
+                          <input type="" name="first_name" id="first_name" value="{{user.first_name}}">
+                        </div>
+                      </div>
+
+                      <hr>
+
+                      <div class="row">
+                        <div class="col-sm-3">
+                          <h6 class="mb-0">Last Name</h6>
+                        </div>
+                        <div class="col-sm-9 text-secondary">
+                          <input type="" name="last_name" id="last_name" value="{{user.last_name}}">
+                        </div>
+                      </div>
+
+                      <hr>
+                      <div class="row">
+                        <div class="col-sm-3">
+                          <h6 class="mb-0">Email</h6>
+                        </div>
+                        <div class="col-sm-9 text-secondary">
+                          <input type="" name="email" id="email" value="{{user.email}}">
+                        </div>
+                      </div>
+                      <hr>
+
+                      <div class="row">
+                        <div class="col-sm-3">
+                          <h6 class="mb-0">PSN</h6>
+                        </div>
+                        <div class="col-sm-9 text-secondary">
+                          <input type="" name="psn" id="psn" value="{{user.userdtl.psn}}">
+                        </div>
+                      </div>
+
+                      <hr>
+                      <div class="row">
+                        <div class="col-sm-3">
+                          <h6 class="mb-0">XBL</h6>
+                        </div>
+                        <div class="col-sm-9 text-secondary">
+                          <input type="" name="xbl" id="xbl" value="{{user.userdtl.xbl}}">
+                        </div>
+                      </div>
+
+                      <hr>
+                      <div class="row">
+                        <div class="col-sm-3">
+                          <h6 class="mb-0">City</h6>
+                        </div>
+                        <div class="col-sm-9 text-secondary">
+                          <input type="" name="city" id="city" value="{{user.userdtl.city}}">
+                        </div>
+                      </div>
+
+                      <hr>
+                      <div class="row">
+                        <div class="col-sm-3">
+                          <h6 class="mb-0">Postal/Zip</h6>
+                        </div>
+                        <div class="col-sm-9 text-secondary">
+                          <input type="" name="zipcode" id="zipcode" value="{{user.userdtl.zipcode}}">
+                        </div>
+                      </div>
+                         <hr>
+                  <div class="row">
+                       <div class="col-sm-3">
+                          <h6 class="mb-0"></h6>
+                        </div>
+                  <div class="col-sm-9 text-secondary text-center">
+                  <input class="btn btn-submit" type="submit" value="Update Profile">
+                  </div>
+                      </div>
+                     </form>
+                       </div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+      </section>
+      {% endblock %}

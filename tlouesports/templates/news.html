@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% load static %}
+{% block body %}
+         <div class="inner-page-banner" style="background-image: url('{{image.0.image}}');">
+            <div class="container">
+            </div>
+         </div>
+         <div class="inner-information-text">
+            <div class="container">
+               <h3>About Us</h3>
+               <ul class="breadcrumb">
+                  <li class="active">About Us</li>
+               </ul>
+            </div>
+         </div>
+      </section>
+      <section id="contant" class="contant">
+         <div class="container">
+            <div class="row">
+               <div class="col-lg-9 col-sm-12 col-xs-12">
+                  <div class="news-post-holder">
+
+                     {% for item in news %}
+                     <div class="col-lg-6 col-sm-6 col-xs-12">
+                        <div class="news-post-widget">
+                           <img class="img-responsive" src="{{item.image}}" alt="">
+                           <div class="news-post-detail">
+                              <span class="date">{{item.time}}</span>
+                              <h2><a href="/news/{{item.title}}">{{item.title}}</a></h2>
+                              <p>{{item.Description|truncatechars:190|safe }}</p>
+                           </div>
+                        </div>
+                     </div>
+                     {% endfor %}
+                  </div>
+               </div>
+               <div class="col-lg-3 col-sm-6 col-xs-12">
+                  <div class="content-widget top-story" style="background: url(images/top-story-bg.jpg);">
+                     <div class="top-stroy-header">
+                        <h2>Top Headlines Story <a href="#" class="fa fa-fa fa-angle-right"></a></h2>
+                        <span class="date">July 05, 2017</span>
+                        <h2>Other Headlines</h2>
+                     </div>
+                     <ul class="other-stroies">
+                        <li><a href="#">The Last Of Us, to the last</a></li>
+                        <li><a href="#">The Last Of Us, to the last</a></li>
+                        <li><a href="#">The Last Of Us, to the last</a></li>
+                        <li><a href="#">The Last Of Us, to the last</a></li>
+                        <li><a href="#">The Last Of Us, to the last</a></li>
+                        <li><a href="#">The Last Of Us, to the last</a></li>
+                        <li><a href="#">The Last Of Us, to the last</a></li>
+                        <li><a href="#">The Last Of Us, to the last</a></li>
+                        <li><a href="#">The Last Of Us, to the last</a></li>
+                     </ul>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </section>
+{% endblock %}

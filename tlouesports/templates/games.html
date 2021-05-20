@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% load static %}
+{% block body %}
+         <div class="inner-page-banner" style="background-image: url('/{{image.0.image}}');">
+            <div class="container">
+            </div>
+         </div>
+         <div class="inner-information-text">
+            <div class="container">
+               <h3>Our Games</h3>
+               <ul class="breadcrumb">
+                  <li><a href="index.html">Home</a></li>
+                  <li class="active">Our Games</li>
+               </ul>
+            </div>
+         </div>
+      </section>
+      <section id="contant" class="contant main-heading team">
+         <div class="row">
+            <div class="container">
+
+               {% for game in games %}
+               <div class="col-md-3 column">
+                  <div class="card">
+                     <img class="img-responsive" src="{{game.image}}" style="width:100%">
+                     <div class="">
+                        <h4>{{game.Name}}</h4>
+                        <p>
+                        <div class="center"><a href="ladders/{{game.Name}}"><button class="button">Join This Game</button></a></div>
+                        </p>
+                     </div>
+                  </div>
+               </div>
+               {% endfor %}
+            </div>
+         </div>
+      </section>
+
+      {% endblock %}

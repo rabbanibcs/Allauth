@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load static %}
+{% block body %}
+<div class="inner-page-banner" style="background-image: url('/{{image.0.image}}');">
+   <div class="container">
+   </div>
+</div>
+<div class="inner-information-text">
+   <div class="container">
+      <h3>About Us</h3>
+      <ul class="breadcrumb">
+         <li><a href="/">Home</a></li>
+         <li class="active">About Us</li>
+      </ul>
+   </div>
+</div>
+<div class="row">
+   <div class="container">
+        {{ setting.aboutus|safe }}
+   </div>
+</div>
+{% endblock %}

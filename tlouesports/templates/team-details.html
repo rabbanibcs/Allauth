@@ -1,0 +1,145 @@
+{% extends "base.html" %}
+{% load static %}
+{% block body %}
+         <div class="full-slider">
+            <div id="carousel-example-generic" class="carousel slide">
+               <!-- Wrapper for slides -->
+               <div class="carousel-inner" role="listbox">
+                  <!-- First slide -->
+
+                  <!-- /.item -->
+               </div>
+            </div>
+            <!-- /.carousel -->
+            <div class="news">
+               <div class="container">
+                  <div class="heading-slider">
+                     <p class="headline"><i class="fa fa-star" aria-hidden="true"></i> Latest winners :</p>
+                     <!--made by vipul mirajkar thevipulm.appspot.com-->
+                     <h1>
+                     <a href="" class="typewrite" data-period="2000" data-type='[ "Latest winners will gets displayed here.", "Latest winners will gets displayed here.", "Latest winners will gets displayed here."]'>
+                     <span class="wrap"></span>
+                     </a>
+                     </h1>	   
+                     <span class="wrap"></span>
+                     </a>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </section>
+
+      {{banner.content|safe}}
+      <section id="contant" class="contant">
+         <div class="container">
+            <div class="row">
+               <div class="col-lg-4 col-sm-4 col-xs-12">
+                  <aside id="sidebar" class="left-bar">
+
+                  </aside>
+                  
+                  <h4>leaderboard</h4>
+                  <aside id="sidebar" class="left-bar">
+                     <div class="feature-matchs">
+                        <table class="table table-bordered table-hover">
+                           <thead>
+                              <tr>
+                                 <th>#</th>
+                                 <th>Team</th>
+                                 <th>P</th>
+                                 <th>W</th>
+                                 <th>L</th>
+                                 <th>points</th>
+                              </tr>
+                           </thead>
+                           <tbody>
+                           {% for team in teams %}
+                              <tr>
+                                 <td>{{ team.id }}</td>
+                                 <td><img src="{% static 'images/img-01_004.png' %}" height="25px" width="25px" alt="">{{ team.Name }}</td>
+                                 <td>{{ team.Win }}+{{ team.Lose }}</td>
+                                 <td>{{ team.Win }}</td>
+                                 <td>{{ team.Lose }}</td>
+                                 <td>{{ team.points }}</td>
+                                 <td>{{ team.crown }}</td>
+                              </tr>
+                           {% endfor %}
+
+                           </tbody>
+                        </table>
+
+                     </div>
+                  </aside>
+
+
+               </div>
+               <div class="col-lg-8 col-sm-8 col-xs-12">
+                  ----------------------
+                  --------------------------
+                  ------------------
+                  ----------------------
+                  <h4>Team detail</h4>
+                  Name: {{team.Name}}<br>
+                  --------------------<br>
+                  ---------------------<br>
+                  ---------------------<br>
+                  <form action="">
+                     <input type="number" value=2>
+                     <input type="submit" value="Challenge">
+                  </form>
+
+               </div>
+            </div>
+         </div>
+      </section>
+
+      <section>
+         <div class="container">
+            <div class="row">
+               <div class="col-md-12">
+                  <div class="full">
+                     <div class="main-heading sytle-2">
+                        <h2>Video</h2>
+                        <p>The Last of Us - Story Trailer</p>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </section>
+      <section>
+         <div class="container">
+            <div class="row">
+               <div class="col-md-12">
+                  <div class="full">
+                     <div class="match_vedio">
+                        <iframe width="100%" height="300" src="https://www.youtube.com/embed/W01L70IGBgE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </section>
+      <div class="team-holder theme-padding">
+         <div class="container">
+            <div id="team-slider">
+               <div class="container">
+                  {% for item in ladder %}
+                  <div class="col-md-3">
+                     <div class="team-column style-2">
+                        <img  class="img-responsive" src="/{{item.image}}" alt="">
+                        <div class="player-name">
+                           <div class="desination-2">In Progress</div>
+                           <h5 style="margin-right: 70px; float: left;"> {{item.Name}}</h5>
+                           <span class="player-number">{{item.teams}}</span>
+                        </div>
+                     </div>
+                  </div>
+                  {% endfor %}
+                 
+               </div>
+            </div>
+         </div>
+      </div>
+ 
+      {% endblock %}

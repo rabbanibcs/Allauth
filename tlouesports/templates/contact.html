@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% block body %}
+<div class="inner-page-banner" style="background-image: url('/{{image.0.image}}');">
+  <div class="container">
+  </div>
+</div>
+<div class="inner-information-text">
+  <div class="container">
+    <h3>Contact</h3>
+    <ul class="breadcrumb">
+      <li><a href="index.html">Home</a></li>
+      <li class="active">Contact</li>
+    </ul>
+  </div>
+</div>
+</section>
+<section id="contant" class="contant main-heading team">
+  <div class="row">
+    <div class="container">
+      <div class="contact">
+        {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-{{message.tags}}" role="alert">
+          {{ message }}
+        </div>
+        {% endfor %}
+        {% endif %}
+        <div class="col-md-6">
+          <div class="contact-info">
+            <div class="kode-section-title">
+              <h3>Contact Info</h3>
+            </div>
+            <div class="kode-forminfo">
+              <ul>
+                <li>
+                  <i class="fa fa-envelope-o"></i>
+                  {{ setting.contact|safe }}
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="contact-us">
+            <form action="{% url 'contact' %}" method="post" class="comments-form">
+              {% csrf_token %}
+              <ul>
+                <!--                               <li>{{ form.as_p }}</li>-->
+                <li><input type="text" id="name" name="name" class="required" placeholder="Name *"></li>
+                <li><input type="text" id="email" name="email" class="required email" placeholder="Email *"></li>
+                <li><input type="text" name="phone" id="phone" placeholder="Phone *" class="required" ></li>
+                <li><textarea name="desc" id="desc" placeholder="Add your message"></textarea></li>
+                <li><input class="btn btn-primary" type="submit" value="SEND Message"></li>
+              </ul>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

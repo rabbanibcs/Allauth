@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+method: {{request.method}}<br>
+scheme: {{request.scheme}}<br>
+body: {{request.body}}<br>
+path: {{request.path}}<br>
+path_info: {{request.path_info}}<br>cookies...<br>
+--------------<br>
+{% for key,value in request.COOKIES.items %}
+{{key}} is--- {{value}}<br>
+{% endfor %}<br>meta data..<br>
+------------------<br>
+{% for key,value in request.META.items %}
+{{key}} is--- {{value}}<br>
+{% endfor %}<br>
+
+
+
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,270 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+   <!-- Basic -->
+   <meta charset="utf-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <!-- Mobile Metas -->
+   <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+   <!-- Site Metas -->
+   <title>Tlouesports.com</title>
+   <meta name="keywords" content="">
+   <meta name="description" content="">
+   <meta name="author" content="">
+   <!-- Site Icons -->
+   <link rel="shortcut icon" href="" type="image/x-icon" />
+   <link rel="apple-touch-icon" href="">
+   <!-- Bootstrap CSS -->
+   <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+   <!-- Site CSS -->
+   <link rel="stylesheet" href="{% static 'style.css' %}">
+   <!-- Colors CSS -->
+   <link rel="stylesheet" href="{% static 'css/colors.css' %}">
+   <!-- ALL VERSION CSS -->	
+   <link rel="stylesheet" href="{% static 'css/versions.css' %}">
+   <!-- Responsive CSS -->
+   <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
+   <!-- Custom CSS -->
+   <link rel="stylesheet" href="{% static 'css/custom.css' %}">
+   <!-- Sweet Alert -->
+   <script src="{% static 'js/sweetalert.min.js' %}"></script>
+   <!-- font family -->
+   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+   <link href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+   <!-- end font family -->
+   <link rel="stylesheet" href="css/3dslider.css" />
+   <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+   <link href="http://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
+   <script src="js/3dslider.js"></script>
+   </head>
+   <body class="game_info" data-spy="scroll" data-target=".header">
+      <!-- LOADER -->
+      <div id="">
+         <img class="preloader" src="{% static 'images/loading-img.gif' %}" alt="">
+      </div>
+      <!-- END LOADER -->
+      <section id="top">
+         <header>
+               {% for message in messages %}
+                  <script>
+                     swal("Tlouesports.com", "{{message}}", "{{message.tags}}");
+                  </script>
+               {% endfor %}
+               <div class="header-bottom">
+                  <div class="row">
+                     <div class="col-md-12">
+                        <div class="full">
+                           <div class="main-menu-section">
+                              <div class="menu container navbar-header" style="background-color: black; color: white;">
+                                 <nav class="navbar navbar-inverse" style="float: right; width: 100%;">
+                                    <div style="float: left; margin-top: 5px; margin-bottom: 5px; width: 200px;" class="navbar navbar-inverse">
+                                       <a href="/"><img src="{% static 'images/logo.png' %}" height="60px" width="220px" alt=""></a>
+                                    </div>
+                                    <div class="navbar-header" style="float: right; width: 50px;">
+                                       <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".js-navbar-collapse">
+                                       <span class="sr-only">Toggle navigation</span>
+                                       <span class="icon-bar"></span>
+                                       <span class="icon-bar"></span>
+                                       <span class="icon-bar"></span>
+                                       </button>
+                                    </div>
+                                    <div class="collapse navbar-collapse js-navbar-collapse" style="float: right;">
+                                       <ul class="nav navbar-nav">
+                                          <li><a href="/">Home</a></li>
+                                          <li><a href="/about/">About Us</a></li>
+                                          <li><a href="/games">Find Your Game</a></li>
+                                          <li><a href="/contact">Support & Contact</a></li>
+                                          {% if user.is_authenticated %}
+                                          <li class="login-modal">
+                                             <a class="login" href="/profile/{{request.user.username}}"><i class="fa fa-user"></i>Welcome {{request.user.first_name}}</a>
+                                          </li>   
+                                          <li class="login-modal">
+                                             <a href="/logout" class="login dropdown-item">Logout</a>
+                                          </li>
+                                          {% else %}
+                                          <li class="login-modal">
+                                             <a class="login"  data-toggle="modal" data-target="#loginModal"><i class="fa fa-user"></i>Login</a>
+                                          </li>
+                                          <li>
+                                             <a  data-toggle="modal" data-target="#signupModal"><i class="fa fa-shopping-cart"></i>Register</a> 
+                                          </li>
+                                          {% endif %}
+                                       </ul>
+                                    </div>
+                                    <!-- /.nav-collapse -->
+                                 </nav>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </header>
+        {% block body %}
+
+        {% endblock %}
+
+            <!-- Login Modal -->
+            <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModal" aria-hidden="true">
+               <div class="modal-dialog" role="document">
+               <div class="modal-content" style="color: white; background-image: linear-gradient(#21c3ad, #2a8e2a, #969214);">
+                  <div class="modal-header" style="background-color: #025a07; color: white;">
+                     <h5 class="modal-title text-center" id="loginModalTitle" style="float: left; color: #FFF;">Login Here</h5>
+                     <button type="button" style="float: right; color: red;" class="close" data-dismiss="modal" aria-label="Close">
+                     <span aria-hidden="true">&times;</span>
+                     </button>
+                  </div>
+                  <div class="modal-body">
+                     <form action='/login' method='post'>
+                     {% csrf_token %} 
+                     <div class="form-group">
+                        <label for="username">UserName</label>
+                        <input type="text" class="form-control" id="loginusername" name="loginusername" placeholder="UserName" required>
+                     </div>
+
+                     <div class="form-group">
+                        <label for="pass">Password</label>
+                        <input type="password" class="form-control" id="loginpassword" name="loginpassword" placeholder="Enter your password">
+                     </div>
+
+                     <button type="submit" class="btn btn-primary btn-block">Submit</button>
+                     </form>
+                  </div>
+                  <div class="modal-footer" style="background-color: #025a07; color: white;">
+                     <div class="text-center p-t-22">
+                        <span>Don't Have an Account?</span>
+                        <a  data-toggle="modal" data-target="#signupModal" data-dismiss="modal" aria-label="Close">Register</a>
+                        <p class="text-center"><a href="#">Forget password?</a> Enter Phone only</p>
+                     </div> 
+                  </div>
+               </div>
+               </div>
+            </div>
+
+
+            <!-- SignUp Modal -->
+            <div class="modal fade" id="signupModal" tabindex="-1" role="dialog" aria-labelledby="signupModal" aria-hidden="true">
+               <div class="modal-dialog" role="document">
+               <div class="modal-content" style="color: white; background-image: linear-gradient(#909215, #2a8e2a, #969214);">
+                  <div class="modal-header" style="background-color: #025a07; color: white;">
+                     <h5 class="modal-title text-center" id="signupModalTitle" style="float: left; color: #FFF;">SignUp Here</h5>
+                     <button type="button" style="float: right; color: red;" class="close" data-dismiss="modal" aria-label="Close">
+                     <span aria-hidden="true">&times;</span>
+                     </button>
+                  </div>
+                  <div class="modal-body">
+                     <form action='/signup' method='post'>
+                     <div class="form-group">
+                        <label for="username">UserName</label>
+                        <input type="text" class="form-control" id="username" name="username" placeholder="UserName" required>
+                     </div>
+                     <div class="form-group">
+                        <label for="fname">First Name</label>
+                        <input type="text" class="form-control" id="fname" name="fname" placeholder="First Name" required>
+                     </div>
+                     <div class="form-group">
+                        <label for="lname">Last Name</label>
+                        <input type="text" class="form-control" id="lname" name="lname" placeholder="Last Name" required>
+                     </div>
+                     <div class="form-group">
+                        <label for="email">Email address</label>
+                        <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com" required>
+                     </div>
+
+                     <div class="form-group">
+                        <label for="pass1">Choose a Password</label>
+                        <input type="password" class="form-control" id="pass1" name="pass1" placeholder="Choose your password" required>
+                     </div>
+                     <div class="form-group">
+                        <label for="pass2">Confirm Password</label>
+                        <input type="password" class="form-control" id="pass2" name="pass2" placeholder="Enter your password again" required>
+                     </div>
+
+                     <div class="form-group">
+                        <label for="psn">PSN</label>
+                        <input type="text" class="form-control" id="psn" name="psn" placeholder="PSN">
+                     </div>
+
+                     <div class="form-group">
+                        <label for="xbl">XBL</label>
+                        <input type="text" class="form-control" id="xbl" name="xbl" placeholder="XBL">
+                     </div>
+                     {% csrf_token %} 
+                     <button type="submit" class="btn btn-primary btn-block">Submit</button>
+                     </form>
+                  </div>
+                  <div class="modal-footer" style="background-color: #025a07; color: white;"> 
+                     <div class="text-center p-t-22">
+                        <span>Already Have an Account?</span>
+                        <a  data-toggle="modal" data-target="#loginModal" data-dismiss="modal" aria-label="Close">Login</a>
+                     </div> 
+                  </div>
+               </div>
+               </div>
+            </div>
+
+
+
+      <footer id="footer" class="footer">
+         <div class="container">
+            <div class="row">
+               <div class="col-md-2">
+                  <div class="full">
+                     <div class="footer-widget">
+                        <h3>Menu</h3>
+                        <ul class="footer-menu">
+                           <li><a href="/news">About Us</a></li>
+                           <li><a href="#">Leaderboards</a></li>
+                           <li><a href="/games">Games</a></li>
+                           <li><a href="/contact">Contact Us</a></li>
+                        </ul>
+                     </div>
+                  </div>
+               </div>
+               <div class="col-md-3">
+                  <div class="full">
+                     <div class="footer-widget">
+                        <h3>Contact us</h3>
+                        <ul class="address-list">
+                           <li><i style="font-size:20px;top:5px;" class="fa fa-envelope"></i> info@tlouesports.com</li>
+                        </ul>
+                     </div>
+                  </div>
+               </div>
+               <div class="col-md-3">
+                  <div class="full">
+                     <div class="footer-widget">
+                        <ul class="social-icons style-4 pull-left">
+                           {% for item in social %}
+                           <li><a class="facebook" href="{{item.link}}"><i class="fab {{item.faicon}}"></i></a></li>
+                           {% endfor %}
+                        </ul>
+                     </div>
+                  </div>
+               </div>
+               <div class="col-md-4">
+                  <div class="full">
+                     <div class="footer-widget">
+                        <div class="footer-logo">
+                           <a href="/"><img src="{% static 'images/logo.png' %}" alt=""></a>
+                        </div>
+                        <p>Register for an Account, Compete in your favourite game titles, Win money and much more !</p>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="footer-bottom">
+            <div class="container">
+               <p>Copyright © 2021 TLOUeSports. All rights reserved.</p>
+            </div>
+         </div>
+      </footer>
+      <a href="#home" data-scroll class="dmtop global-radius"><i class="fa fa-angle-up"></i></a>
+      <!-- ALL JS FILES -->
+      <script src="{% static 'js/all.js' %}"></script>
+      <!-- ALL PLUGINS -->
+      <script src="{% static 'js/custom.js' %}"></script>
+   </body>
+</html>

@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% load static %}
+{% block body %}
+
+<div class="inner-page-banner" style="background-image: url('/{{image.0.image}}');">
+    <div class="container">
+    </div>
+ </div>
+ <div class="inner-information-text">
+    <div class="container">
+       <h3>{{gname}}</h3>
+       <ul class="breadcrumb">
+          <li><a href="/">Home</a></li>
+          <li><a href="/">Validate</a></li>
+          <li class="active">{{vuser.first_name}} {{vuser.last_name}}</li>
+       </ul>
+    </div>
+ </div>
+</section>
+    <div class="container">
+        <div style="margin: 7px;">
+            <div class="rounded" style="background-image: url('{%static 'shop/images/big_1.jpg'%}'); border:5px solid #1a2122;">
+                <div class="login_box_img" style="margin: 20px;">
+                    <div class="text-center">
+                        <p class="text-center"> If you are Not {{vuser.first_name}} {{vuser.last_name}}, <a href="/contact">Contact Us</a></p>    
+                        <h5 class="text-center p-t-30">You will receive Your Code on {{vuser.email}}</h5> 
+                    </div>
+                </div>
+            </div>
+            <div class="p-t-35 bor10" style="margin-top: 70px; margin-bottom: 130px;">
+                <div class="login_form_inner reg_form">
+                    <form action="" method="POST">{% csrf_token %}
+                        
+                        <div class="form-group">
+                            <label for="username">Enter Your Code</label>
+                            <input type="text" class="form-control"  name="onepass" placeholder="Enter Your Code" required>
+                         </div>
+                        {% if vuser.is_active == 1 %}
+                        
+                        <div class="form-group">
+                            <label for="username">New Password</label>
+                            <input type="password" class="form-control"  name="npass" placeholder="Chose new password" required>
+                         </div>
+                        {% endif %}
+                        <button class="btn btn-primary btn-block">
+                            Validate
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}
